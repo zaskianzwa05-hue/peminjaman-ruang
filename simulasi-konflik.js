@@ -1,2 +1,2 @@
 //konfigurasi batas maksimum pemminjaman
-const maxBooking = 5;
+const maxBooking = 10;
