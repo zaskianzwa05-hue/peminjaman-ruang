@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Testing Schedule Validation</title>
+</head>
+<body>
+    <h2>Testing Schedule Validation</h2>
+
+    <button onclick="testConflict()">
+        Test Jadwal Bentrok
+    </button>
+
+    <button onclick="testAvailable()">
+        Test Jadwal Tersedia
+    </button>
+
+    <button onclick="testInvalid()">
+        Test Jam Tidak Valid
+    </button>
+
+    <p id="result"></p>
+
+    <script src="schedule-validation.js"></script>
+
+    <script>
+        const bookings = [
+            {
+                room: "A101",
+                date: "2026-11-26",
+                startTime: "09:00",
+                endTime: "11:00"
+            }
+        ];
+
+        function displayResult(data) {
+            document.getElementById("result").textContent =
+                data.message;
+        }
+
+        function testConflict() {
+            displayResult(validateSchedule(bookings, {
+                room: "A101",
+                date: "2026-11-26",
+                startTime: "10:00",
+                endTime: "12:00"
+            }));
+        }
+
+        function testAvailable() {
+            displayResult(validateSchedule(bookings, {
+                room: "A101",
+                date: "2026-11-26",
+                startTime: "11:00",
+                endTime: "12:00"
+            }));
+        }
+
+        function testInvalid() {
+            displayResult(validateSchedule(bookings, {
+                room: "A101",
+                date: "2026-11-26",
+                startTime: "13:00",
+                endTime: "12:00"
+            }));
+        }
+    </script>
+</body>
+</html>
